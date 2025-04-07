@@ -1,0 +1,34 @@
+/* src/index.css */
+body {
+  font-family: 'Arial', sans-serif;
+}
+.text-gray{
+  color: gray;
+}
+
+.text-lightGray{
+  color: lightgray;
+}
+
+/* Custom modal styles */
+.custom-modal .modal-dialog {
+  max-width: 80%; /* Adjust the width to your preference */
+  margin: 50px auto; /* Center the modal */
+}
+
+.custom-modal .modal-content {
+  padding: 20px; /* Add padding for inner content */
+}
+
+
+.upload-box {
+  border: 3px dashed lightGray;
+  background: #F7F7F7;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.upload-box:hover {
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
