@@ -6,7 +6,7 @@
 ![Redux](https://img.shields.io/badge/Redux-4.x-purple)
 ![React Router](https://img.shields.io/badge/React_Router-7.x-orange)
 
-## Project Structure (Updated with .env)
+## Project Structure
 
 ```
 font-management-frontend/
