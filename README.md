@@ -1,54 +1,176 @@
-# React + TypeScript + Vite
+Here's the complete README.md file for your frontend project, including the `.env` file in the project structure:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Font Management System - Frontend
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Vite](https://img.shields.io/badge/Vite-6.x-yellow)
+![Redux](https://img.shields.io/badge/Redux-4.x-purple)
+![React Router](https://img.shields.io/badge/React_Router-7.x-orange)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure (Updated with .env)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+font-management-frontend/
+├── public/                # Static assets
+├── src/                   # Source code
+│   ├── assets/            # Static files like images
+│   ├── components/        # Reusable UI components
+│   ├── pages/             # Page components
+│   ├── services/          # API service layer
+│   ├── store/             # Redux store
+│   ├── types/             # Type definitions
+├── .env                   # Environment variables
+├── .gitignore
+├── index.html             # Main HTML file
+├── package.json
+├── tsconfig.json          # TypeScript config
+└── vite.config.ts         # Vite config
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Drag-and-drop font upload (TTF only)
+- Font preview functionality
+- Create and manage font groups
+- Responsive design with Bootstrap
+- State management with Redux Toolkit
+- Type-safe codebase
+- Single-page application with React Router
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+- Backend server running (see [backend repository](https://github.com/rahmansadaf46/font-management-backend))
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/rahmansadaf46/font-management-frontend.git
+   cd font-management-frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Environment Variables
+
+Create a `.env` file in the root directory with the following content:
+
+```env
+# Base URL for API requests
+VITE_API_BASE_URL=http://localhost:5050/api
+
 ```
+
+### Running the Application
+
+Start the development server:
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+Other commands:
+- `npm run build`: Create production build
+- `npm run preview`: Preview production build locally
+- `npm run lint`: Run ESLint
+
+## API Service Configuration
+
+The API service is configured in `src/services/api.ts` to use the environment variable:
+
+```typescript
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+```
+
+## Key Components
+
+### Pages
+- **Home**: Dashboard view
+- **FontUploadPage**: Upload TTF fonts
+- **FontListPage**: View all uploaded fonts
+- **FontGroupsPage**: Manage font groups
+- **CreateFontGroupPage**: Create new font groups
+
+### Components
+- **FontUpload**: Drag-and-drop file upload component
+- **FontList**: Displays all fonts with previews
+- **FontGroupList**: Shows all font groups
+- **CreateFontGroup**: Form to create new groups
+- **EditFontGroupModal**: Modal for editing groups
+
+## Dependencies
+
+### Core
+- `react`: ^19.0.0
+- `react-dom`: ^19.0.0
+- `typescript`: ~5.7.2
+
+### State Management
+- `@reduxjs/toolkit`: ^2.6.1
+- `react-redux`: ^9.2.0
+
+### Routing
+- `react-router-dom`: ^7.4.1
+
+### UI
+- `bootstrap`: ^5.3.4
+- `lucide-react`: ^0.487.0
+- `@fortawesome/react-fontawesome`: ^0.2.2
+
+### API
+- `axios`: ^1.8.4
+- `react-dropzone`: ^14.3.8 (for file uploads)
+
+### Development
+- `vite`: ^6.2.0
+- `@vitejs/plugin-react`: ^4.3.4
+- `eslint`: ^9.21.0
+
+## Connecting to Backend
+
+1. Ensure your backend server is running (default: `http://localhost:5050`)
+2. Verify the `VITE_API_BASE_URL` in your `.env` file points to your backend API
+3. The frontend will automatically use this URL for all API requests
+
+## Deployment
+
+For production deployment:
+1. Set production environment variables
+2. Build the project:
+   ```bash
+   npm run build
+   ```
+3. Deploy the contents of the `dist` folder to your hosting provider
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+For any questions or issues, please open an issue on the [GitHub repository](https://github.com/rahmansadaf46/font-management-frontend/issues).
