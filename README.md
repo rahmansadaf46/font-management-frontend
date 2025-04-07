@@ -97,22 +97,6 @@ const api = axios.create({
 
 ```
 
-## Key Components
-
-### Pages
-- **Home**: Dashboard view
-- **FontUploadPage**: Upload TTF fonts
-- **FontListPage**: View all uploaded fonts
-- **FontGroupsPage**: Manage font groups
-- **CreateFontGroupPage**: Create new font groups
-
-### Components
-- **FontUpload**: Drag-and-drop file upload component
-- **FontList**: Displays all fonts with previews
-- **FontGroupList**: Shows all font groups
-- **CreateFontGroup**: Form to create new groups
-- **EditFontGroupModal**: Modal for editing groups
-
 ## Dependencies
 
 ### Core
