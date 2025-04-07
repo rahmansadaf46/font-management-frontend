@@ -3,37 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFonts, updateFontGroup } from '../services/api';
 import { RootState } from '../store';
 import { setRenderFontList } from '../store/fontSlice';
+import { EditFontGroupModalProps, Font, FontGroupRow } from '../types';
 
-interface Font {
-    _id: string;
-    name: string;
-    isActive?: boolean;
-}
-
-interface FontGroupRow {
-    fontName: string;
-    fontId: string;
-    specificSize: string;
-    priceChange: string;
-}
-
-
-interface Font {
-    _id: string;
-    name: string;
-}
-
-interface FontGroup {
-    _id: string;
-    name: string;
-    fonts: Font[];
-}
-
-interface EditFontGroupModalProps {
-    show: boolean;
-    currentGroup: FontGroup;
-    handleClose: () => void;
-}
 const EditFontGroupModal: React.FC<EditFontGroupModalProps> = ({ show, currentGroup, handleClose }) => {
     const [fontGroups, setFontGroups] = useState<Font[]>([]); // List of available fonts
     const [rows, setRows] = useState<FontGroupRow[]>([{ fontName: '', fontId: '', specificSize: '1.00', priceChange: '0' }]); // Font rows for selection

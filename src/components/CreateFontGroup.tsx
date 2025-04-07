@@ -3,18 +3,7 @@ import { createFontGroup, getFonts } from '../services/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { setRenderFontList } from '../store/fontSlice';
-
-interface Font {
-    _id: string;
-    name: string;
-}
-
-interface FontGroupRow {
-    fontName: string;
-    fontId: string;
-    specificSize: string;
-    priceChange: string;
-}
+import { Font, FontGroupRow } from '../types';
 
 const CreateFontGroup: React.FC = () => {
     const [fontGroups, setFontGroups] = useState<Font[]>([]); // List of available fonts

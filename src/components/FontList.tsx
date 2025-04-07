@@ -3,12 +3,8 @@ import { deleteFont, getFonts } from '../services/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { setRenderFontList } from '../store/fontSlice';
+import { FontGroup } from '../types';
 
-interface FontGroup {
-    _id: string;
-    name: string;
-    path: string;
-}
 
 const FontList: React.FC = () => {
     const [fonts, setFonts] = useState<FontGroup[]>([]);
@@ -52,7 +48,7 @@ const FontList: React.FC = () => {
         document.head.appendChild(styleElement);
 
         const fontFaces = fonts.map(font => {
-            const fontFileName = font.path.replace(/\\/g, '/');;
+            const fontFileName = (font.path ?? '').replace(/\\/g, '/');
             const fontFamilyName = `${font.name}-${font._id}`;
 
             return `

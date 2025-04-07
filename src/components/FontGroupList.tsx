@@ -4,12 +4,7 @@ import { deleteFontGroup, getFontGroups } from '../services/api';
 import { RootState } from '../store';
 import { setRenderFontList } from '../store/fontSlice';
 import EditFontGroupModal from './EditFontGroupModal';
-
-interface FontGroup {
-  _id: string;
-  name: string;
-  fonts: { name: string, _id: string, isActive?: boolean }[]; // Array of font names and their ids
-}
+import { FontGroup } from '../types';
 
 const FontGroupList: React.FC = () => {
   const [fontGroups, setFontGroups] = useState<FontGroup[]>([]);
