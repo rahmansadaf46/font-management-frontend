@@ -1,5 +1,3 @@
-Here's the complete README.md file for your frontend project, including the `.env` file in the project structure:
-
 # Font Management System - Frontend
 
 ![React](https://img.shields.io/badge/React-19-blue)
