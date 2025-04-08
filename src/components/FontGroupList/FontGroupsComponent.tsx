@@ -1,7 +1,7 @@
 import React from 'react';
-import FontGroupList from '../components/FontGroupList';
+import FontGroupList from './FontGroupList';
 
-const FontGroupsPage: React.FC = () => {
+const FontGroupsComponent: React.FC = () => {
   return (
     <div className="container mt-5">
       <h6>Our Font Groups</h6>
@@ -10,4 +10,4 @@ const FontGroupsPage: React.FC = () => {
   );
 };
 
-export default FontGroupsPage;
+export default FontGroupsComponent;

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteFontGroup, getFontGroups } from '../services/api';
-import { RootState } from '../store';
-import { setRenderFontList } from '../store/fontSlice';
+import { FontGroup } from '../../types';
+import { RootState } from '../../store';
+import { setRenderFontList } from '../../store/fontSlice';
+import { deleteFontGroup, getFontGroups } from '../../services/api';
 import EditFontGroupModal from './EditFontGroupModal';
-import { FontGroup } from '../types';
+
 
 const FontGroupList: React.FC = () => {
   const [fontGroups, setFontGroups] = useState<FontGroup[]>([]);

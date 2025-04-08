@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFonts, updateFontGroup } from '../services/api';
-import { RootState } from '../store';
-import { setRenderFontList } from '../store/fontSlice';
-import { EditFontGroupModalProps, Font, FontGroupRow } from '../types';
+import { getFonts, updateFontGroup } from '../../services/api';
+import { RootState } from '../../store';
+import { setRenderFontList } from '../../store/fontSlice';
+import { EditFontGroupModalProps, Font, FontGroupRow } from '../../types';
 
 const EditFontGroupModal: React.FC<EditFontGroupModalProps> = ({ show, currentGroup, handleClose }) => {
     const [fontGroups, setFontGroups] = useState<Font[]>([]); // List of available fonts
@@ -84,12 +84,22 @@ const EditFontGroupModal: React.FC<EditFontGroupModalProps> = ({ show, currentGr
             alert('Group title is required');
             return;
         }
-
+    
+        // Extract fontIds and check for duplicates
+        const fontIds = rows.filter(row => row.fontId !== '').map(row => row.fontId);
+        const uniqueFontIds = new Set(fontIds);
+    
+        if (fontIds.length !== uniqueFontIds.size) {
+            alert('Duplicate fonts detected! Please ensure all fonts are unique.');
+            return;
+        }
+    
+        // Prepare the data for API call
         const fontGroupData = {
             title: groupTitle,
-            fonts: rows.filter(row => row.fontId !== '').map(row => row.fontId),
+            fonts: fontIds,
         };
-
+    
         try {
             await updateFontGroup(currentGroup._id, fontGroupData.title, fontGroupData.fonts);
             alert('Font group updated successfully');
@@ -99,6 +109,7 @@ const EditFontGroupModal: React.FC<EditFontGroupModalProps> = ({ show, currentGr
             console.error(error);
         }
     };
+    
 
     return (
         <div

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { deleteFont, getFonts } from '../services/api';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { setRenderFontList } from '../store/fontSlice';
-import { FontGroup } from '../types';
+import { deleteFont, getFonts } from '../../services/api';
+import { RootState } from '../../store';
+import { setRenderFontList } from '../../store/fontSlice';
+import { FontGroup } from '../../types';
 
 
 const FontList: React.FC = () => {

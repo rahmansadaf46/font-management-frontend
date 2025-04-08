@@ -1,7 +1,7 @@
 import React from 'react';
-import FontList from '../components/FontList';
+import FontList from './FontList';
 
-const FontListPage: React.FC = () => {
+const FontListComponent: React.FC = () => {
   return (
     <div className="container mt-5">
       <h6>Our Fonts</h6>
@@ -10,4 +10,4 @@ const FontListPage: React.FC = () => {
   );
 };
 
-export default FontListPage;
+export default FontListComponent;

@@ -1,7 +1,7 @@
 import React from 'react';
-import CreateFontGroup from '../components/CreateFontGroup';
+import CreateFontGroup from './CreateFontGroup';
 
-const CreateFontGroupPage: React.FC = () => {
+const CreateFontGroupComponent: React.FC = () => {
   return (
     <div className="container mt-5">
       <h6>Create Font Group</h6>
@@ -10,4 +10,4 @@ const CreateFontGroupPage: React.FC = () => {
   );
 };
 
-export default CreateFontGroupPage;
+export default CreateFontGroupComponent;

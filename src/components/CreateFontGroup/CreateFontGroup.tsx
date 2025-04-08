@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { createFontGroup, getFonts } from '../services/api';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { setRenderFontList } from '../store/fontSlice';
-import { Font, FontGroupRow } from '../types';
+import { createFontGroup, getFonts } from '../../services/api';
+import { RootState } from '../../store';
+import { setRenderFontList } from '../../store/fontSlice';
+import { Font, FontGroupRow } from '../../types';
 
 const CreateFontGroup: React.FC = () => {
     const [fontGroups, setFontGroups] = useState<Font[]>([]); // List of available fonts
@@ -68,22 +68,33 @@ const CreateFontGroup: React.FC = () => {
             alert('Group title is required');
             return;
         }
-
+    
+        // Check for duplicate fontIds
+        const fontIds = rows.filter(row => row.fontId !== '').map(row => row.fontId);
+        const uniqueFontIds = new Set(fontIds);
+    
+        if (fontIds.length !== uniqueFontIds.size) {
+            alert('Duplicate fonts detected! Please ensure all fonts are unique.');
+            return;
+        }
+    
         // Prepare the data for API call
         const fontGroupData = {
             title: groupTitle,
-            fonts: rows.filter(row => row.fontId !== '').map(row => row.fontId),
+            fonts: fontIds,
         };
+    
         try {
             await createFontGroup(fontGroupData.title, fontGroupData.fonts);
             alert('Font group created successfully');
             setRows([{ fontName: '', fontId: '', specificSize: '1.00', priceChange: '0' }]);
-            handleFontListChange()
+            handleFontListChange();
         } catch (error) {
             alert('Failed to upload font!');
             console.error(error);
         }
     };
+    
 
     return (
         <div>

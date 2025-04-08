@@ -1,10 +1,11 @@
 import { CloudUpload } from 'lucide-react';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { uploadFont } from '../services/api';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { setRenderFontList } from '../store/fontSlice';
+import { setRenderFontList } from '../../store/fontSlice';
+import { RootState } from '../../store';
+import { uploadFont } from '../../services/api';
+
 
 const FontUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
